@@ -1,6 +1,7 @@
 package lib.ui;
 
 import io.appium.java_client.AppiumDriver;
+import io.qameta.allure.Step;
 import lib.Platform;
 import lib.ui.factories.ArticlePageObjectFactory;
 import org.openqa.selenium.By;
@@ -30,6 +31,7 @@ public abstract class ListPageObject extends MainPageObject {
 
     /** TEMPLATES **/
 
+    @Step("View list")
     public void viewList() {
         this.waitElementAndClick(
                 getLocator(buttonViewList),
@@ -42,6 +44,7 @@ public abstract class ListPageObject extends MainPageObject {
         }
     }
 
+    @Step("Remove article '{articleName}' from list")
     public void removeFromList(String articleName) {
         this.waitElementPresent(
                 getLocator(getArticleItem(articleName)),
@@ -49,6 +52,7 @@ public abstract class ListPageObject extends MainPageObject {
                 10
         );
 
+        screenshot(this.takeScreenshot("before_remove_from_list"));
         if (Platform.getInstance().isMw()) {
             this.waitElementAndClick(
                     getLocator(getArticleItemUnStarButton(articleName)),
@@ -72,6 +76,7 @@ public abstract class ListPageObject extends MainPageObject {
         }
     }
 
+    @Step("Check article in list '{articleName}'")
     public void checkArticleInList(String articleName) {
         this.waitElementPresent(
                 getLocator(getArticleItem(articleName)),
@@ -80,6 +85,7 @@ public abstract class ListPageObject extends MainPageObject {
         );
     }
 
+    @Step("Click on article '{articleName}' in list")
     public void clickOnArticleInList(String articleName) {
         this.waitElementAndClick(
                 getLocator(getArticleItem(articleName)),
@@ -88,6 +94,7 @@ public abstract class ListPageObject extends MainPageObject {
         );
     }
 
+    @Step("Get article text in list")
     public String getArticleNameInList(String articleName){
         return this.waitElementAndGetText(
                 getLocator(getArticleItem(articleName)),
@@ -96,6 +103,7 @@ public abstract class ListPageObject extends MainPageObject {
         );
     }
 
+    @Step("Close popup")
     public void closePopup() {
         this.waitElementAndClick(
                 getLocator(buttonClosePopup),

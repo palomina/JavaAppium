@@ -1,5 +1,7 @@
 package tests;
 
+import io.qameta.allure.*;
+import io.qameta.allure.junit4.DisplayName;
 import lib.CoreTestCase;
 import lib.ui.*;
 import lib.ui.factories.ArticlePageObjectFactory;
@@ -10,6 +12,12 @@ import org.junit.Test;
 public class ArticleTest extends CoreTestCase {
 
     @Test
+    @Epic(value = "Articles")
+    @Features(value = {@Feature(value="Article"),@Feature(value="Search")})
+    @DisplayName("Check article name")
+    @Description("Search article and check it name on article page")
+    @Step("Starting test testCheckArticleNamePresent")
+    @Severity(value = SeverityLevel.MINOR)
     public void testCheckArticleNamePresent() {
         String word = "Java";
         String firstArticleName;

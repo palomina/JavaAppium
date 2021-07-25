@@ -1,6 +1,7 @@
 package lib.ui;
 
 import io.appium.java_client.AppiumDriver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 public abstract class WelcomePageObject extends MainPageObject {
@@ -19,6 +20,7 @@ public abstract class WelcomePageObject extends MainPageObject {
         super(driver);
     }
 
+    @Step("Skip welcome tutorial")
     public void skip() {
         this.waitElementPresent(
                 getLocator(buttonSkip),
@@ -33,6 +35,7 @@ public abstract class WelcomePageObject extends MainPageObject {
         );
     }
 
+    @Step("Click next button")
     public void nextClick() {
         this.waitElementAndClick(
                 getLocator(buttonNext),
@@ -41,6 +44,7 @@ public abstract class WelcomePageObject extends MainPageObject {
         );
     }
 
+    @Step("Wait for text 'Learn more about Wikipedia'")
     public void waitForLearnMoreLink()
     {
         this.waitElementPresent(
@@ -50,6 +54,7 @@ public abstract class WelcomePageObject extends MainPageObject {
         );
     }
 
+    @Step("Wait for text 'New ways to explore'")
     public void waitForNewWaysToExplore()
     {
         this.waitElementPresent(
@@ -59,6 +64,7 @@ public abstract class WelcomePageObject extends MainPageObject {
         );
     }
 
+    @Step("Wait for text 'Add or edit preferred languages'")
     public void waitForAddOrEditPreferredLanguages()
     {
         this.waitElementPresent(
@@ -67,6 +73,8 @@ public abstract class WelcomePageObject extends MainPageObject {
                 20
         );
     }
+
+    @Step("Wait for text 'Learn more about data collected'")
     public void waitForLearnMoreAboutDataCollected()
     {
         this.waitElementPresent(
@@ -75,7 +83,10 @@ public abstract class WelcomePageObject extends MainPageObject {
                 20
         );
     }
+
+    @Step("Click the button 'Get Started'")
     public void getStartedClick() {
+        screenshot(this.takeScreenshot("welcome_get_started"));
         this.waitElementAndClick(
                 getLocator(buttonGetStarted),
                 "Button `Get Started` not found",

@@ -1,6 +1,7 @@
 package lib.ui;
 
 import io.appium.java_client.AppiumDriver;
+import io.qameta.allure.Step;
 import lib.Platform;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -41,6 +42,7 @@ public abstract class SearchPageObject extends MainPageObject {
     }
     /** TEMPLATES **/
 
+    @Step("Initializing the search field")
     public void initSearchInput() {
         this.waitElementPresent(
                 getLocator(fieldsSearch),
@@ -59,7 +61,7 @@ public abstract class SearchPageObject extends MainPageObject {
                 "SearchInput is not presented",
                 30
         );
-
+        screenshot(this.takeScreenshot("init_search_input"));
         if (Platform.getInstance().isIOS() || Platform.getInstance().isAndroid())   {
         this.assertElementHasText(
                 getLocator(inputSearch),
@@ -76,6 +78,7 @@ public abstract class SearchPageObject extends MainPageObject {
         }
     }
 
+    @Step("Fill the search field the value '{word}'")
     public void searchByInputText(String word) {
         this.waitElementAndSendKeys(
                 getLocator(inputSearch),
@@ -85,6 +88,7 @@ public abstract class SearchPageObject extends MainPageObject {
         );
     }
 
+    @Step("Check is results presents")
     public void checkIsResultsPresents() {
         this.waitElementPresent(
                 getLocator(panelSearchResult),
@@ -98,25 +102,30 @@ public abstract class SearchPageObject extends MainPageObject {
                 20
         );
 
+        screenshot(this.takeScreenshot("check_articles_present_in_result"));
+
         this.assertCountElements(
                 getLocator(itemSearchResult),
                 "Unexpected text"
         );
     }
 
+    @Step("Clear results")
     public void clearResults() {
         this.waitElementAndClick(
                 getLocator(buttonClearSearch),
                 "Button `Clear` is not found",
                 20
         );
-
+        screenshot(this.takeScreenshot("clear_results"));
         this.waitElementPresent(
                 getLocator(panelSearchEmptyResult),
                 "Panel of empty result is not found",
                 20
         );
     }
+
+    @Step("Cancel search")
     public void cancelSearch() {
         this.waitElementAndClick(
                 getLocator(buttonCancelSearch),
@@ -125,6 +134,7 @@ public abstract class SearchPageObject extends MainPageObject {
         );
     }
 
+    @Step("Check text results with '{word}'")
     public void checkTextResults(String word) {
         this.assertElementsHasText(
                 getLocator(itemSearchResult),
@@ -133,6 +143,7 @@ public abstract class SearchPageObject extends MainPageObject {
         );
     }
 
+    @Step("Find article {index}")
     public String getArticleNameByIndex(int index) {
         this.waitElementPresent(
                 getLocator(getSearchResultItem(index)),
@@ -147,6 +158,7 @@ public abstract class SearchPageObject extends MainPageObject {
         );
     }
 
+    @Step("Choose article by index '{index}'")
     public void chooseArticleByIndex(int index) {
         this.waitElementAndClick(
                 getLocator(getSearchResultItem(index)),
@@ -155,6 +167,7 @@ public abstract class SearchPageObject extends MainPageObject {
         );
     }
 
+    @Step("Wait the article with title '{title}' and description '{description}'")
     public void waitForElementByTitleAndDescription(String title, String description) {
         this.waitElementPresent(
                 getLocator(getSearchResultItemByTitleAndDescription(title, description)),
@@ -163,6 +176,7 @@ public abstract class SearchPageObject extends MainPageObject {
         );
     }
 
+    @Step("Deselect stared article")
     public void deselectStaredElements() {
         if (this.isElementPresent(getLocator(itemSearchResultButtonStar))) {
             this.waitElementPresent(

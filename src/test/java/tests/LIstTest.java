@@ -1,5 +1,7 @@
 package tests;
 
+import io.qameta.allure.*;
+import io.qameta.allure.junit4.DisplayName;
 import lib.CoreTestCase;
 import lib.Platform;
 import lib.ui.*;
@@ -11,6 +13,12 @@ import org.junit.Test;
 public class LIstTest extends CoreTestCase {
 
     @Test
+    @Epic(value = "Articles")
+    @Features(value = {@Feature(value="List"),@Feature(value="Search"),@Feature(value="Article")})
+    @DisplayName("Save two articles")
+    @Description("Save two articles to saved list and after remove one")
+    @Step("Starting test testSaveTwoArticle")
+    @Severity(value = SeverityLevel.BLOCKER)
     public void testSaveTwoArticle() throws Exception {
         String word = "Java";
         String listName = "List1";

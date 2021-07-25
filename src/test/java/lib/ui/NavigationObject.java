@@ -1,6 +1,7 @@
 package lib.ui;
 
 import io.appium.java_client.AppiumDriver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -16,6 +17,7 @@ public abstract class NavigationObject extends MainPageObject {
         super(driver);
     }
 
+    @Step("Click button back")
     public void back() {
         this.waitElementAndClick(
                 getLocator(buttonBack),
@@ -24,6 +26,7 @@ public abstract class NavigationObject extends MainPageObject {
         );
     }
 
+    @Step("Open menu")
     public void openMenu() {
         this.waitElementAndClick(
                 getLocator(buttonMenu),
@@ -32,8 +35,10 @@ public abstract class NavigationObject extends MainPageObject {
         );
     }
 
+    @Step("Click auth button")
     public void clickAuthButton() {
         this.openMenu();
+        screenshot(this.takeScreenshot("click_auth"));
         this.tryElementClick(
                 getLocator(menuLogin),
                 "Cannot find auth button",
@@ -41,8 +46,10 @@ public abstract class NavigationObject extends MainPageObject {
         );
     }
 
+    @Step("Click watchlist button")
     public void clickWatchlistButton() {
         this.openMenu();
+        screenshot(this.takeScreenshot("click_watchlist"));
         this.tryElementClick(
                 getLocator(menuWatchlist),
                 "Cannot find watchlist button",

@@ -1,4 +1,7 @@
 # Compiled class file
+screenshots/*.png
+
+# Compiled class file
 *.class
 
 # Log file

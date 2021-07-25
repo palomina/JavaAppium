@@ -1,5 +1,7 @@
 package tests;
 
+import io.qameta.allure.*;
+import io.qameta.allure.junit4.DisplayName;
 import lib.CoreTestCase;
 import lib.ui.SearchPageObject;
 import lib.ui.WelcomePageObject;
@@ -10,6 +12,12 @@ import org.junit.Test;
 public class SearchTest extends CoreTestCase {
 
     @Test
+    @Epic(value = "Articles")
+    @Features(value = {@Feature(value="Article"),@Feature(value="Search")})
+    @DisplayName("Check text")
+    @Description("Check text in search field")
+    @Step("Starting test testCheckText")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testCheckText() {
        WelcomePageObject welcomePageObject = WelcomePageObjectFactory.get(driver);
         welcomePageObject.skip();
@@ -19,6 +27,12 @@ public class SearchTest extends CoreTestCase {
     }
 
     @Test
+    @Epic(value = "Articles")
+    @Features(value = {@Feature(value="Article"),@Feature(value="Search")})
+    @DisplayName("Search word and clean result")
+    @Description("Search word and clean result")
+    @Step("Starting test testSearchWordAndCleanResult")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testSearchWordAndCleanResult() {
         String word = "Java";
 
@@ -33,6 +47,12 @@ public class SearchTest extends CoreTestCase {
     }
 
     @Test
+    @Epic(value = "Articles")
+    @Features(value = {@Feature(value="Article"),@Feature(value="Search")})
+    @DisplayName("Search word and check result")
+    @Description("Search word and check result")
+    @Step("Starting test testSearchWordAndCheckResult")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testSearchWordAndCheckResult()  throws Exception{
         String word = "Java";
 
@@ -49,6 +69,12 @@ public class SearchTest extends CoreTestCase {
 
 
     @Test
+    @Epic(value = "Articles")
+    @Features(value = {@Feature(value="Article"),@Feature(value="Search")})
+    @DisplayName("Search word and check results by title and description")
+    @Description("Search word and check results by title and description")
+    @Step("Starting test testSearchWordAndCheckResultsByTitleAndDescription")
+    @Severity(value = SeverityLevel.NORMAL)
     public void testSearchWordAndCheckResultsByTitleAndDescription() {
         String word = "Java";
 
